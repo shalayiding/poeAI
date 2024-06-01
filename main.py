@@ -13,10 +13,7 @@ if __name__ == "__main__":
         prompt = file.read()
     
     scraper = SCR.scraper("https://r.jina.ai/")
-    # reader_api_result = scraper.fetch_reader_page("https://www.poewiki.net/wiki/Path_of_Exile_Wiki")
     
-    # raw_html = scraper.fetch_raw_html("https://www.poewiki.net/wiki/Path_of_Exile_Wiki")
-    # links_arr = scraper.html_extract_a(raw_html.content, "wiki.")
     
     ai_bot = model.Chatgpt(openai_key, "gpt-4o", prompt, 500, [])
     
