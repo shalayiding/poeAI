@@ -5,9 +5,9 @@ poeAI is an AI assistant for the game Path of Exile. It provides players with de
 # Chatbot Function List
 
 See detail on [here](functionlist.md):
-1.Fetch Reader Page
-2.Fetch Raw HTML
-3.HTML Extract A
+1. Fetch Reader Page
+2. Fetch Raw HTML
+3. HTML Extract A
 
 ## Features
 
