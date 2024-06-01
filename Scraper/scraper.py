@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-
+import json
 
 class scraper:
     def __init__ (self, SCRAPER_API_END_POINT):
@@ -12,12 +12,19 @@ class scraper:
     def fetch_reader_page(self,PAGE_URL):
         url = self.API_END_POINT + PAGE_URL
         response = requests.get(url)
-        return response
+        if response.status_code == 200:
+            return json.dumps({"PAGE_URL": PAGE_URL, "response_status_code": response.status_code, "response_content": response.content.decode('utf-8')}) 
+        else:
+            return json.dumps({"PAGE_URL": PAGE_URL, "response_status_code": response.status_code, "response_content": "Unable to extract information"}) 
+        
     
     def fetch_raw_html(self,PAGE_URL):
         url = PAGE_URL
         response = requests.get(url)
-        return response
+        if response.status_code == 200:
+            return json.dumps({"PAGE_URL": PAGE_URL, "response_status_code": response.status_code, "response_content": response.content.decode('utf-8')}) 
+        else:
+            return json.dumps({"PAGE_URL": PAGE_URL, "response_status_code": response.status_code, "response_content": "Unable to extract information"}) 
     
     # all this type of funciton is name in the way that 
     # (from)_extract_(something) 
