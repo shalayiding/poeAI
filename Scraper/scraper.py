@@ -35,4 +35,16 @@ class scraper:
         regex = re.compile(Pattern)
         filtered_links = [(a.text, a['href']) for a in a_tags if regex.search(a['href'])]
         return filtered_links
-        
+    
+    # extract from the url all the a tag match the pattern
+    def url_extract_a(self,PAGE_URL,Pattern):
+        url = PAGE_URL
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
+            a_tags = soup.find_all('a', href=True)
+            regex = re.compile(Pattern)
+            filtered_links = [(a.text, a['href']) for a in a_tags if regex.search(a['href'])]
+            return json.dumps({"PAGE_URL": PAGE_URL,"Pattern":Pattern, "response_status_code": response.status_code, "response_content": filtered_links}) 
+        else :
+            return json.dumps({"PAGE_URL": PAGE_URL, "Pattern":Pattern,"response_status_code": response.status_code, "response_content": "Unable to extract information"}) 
